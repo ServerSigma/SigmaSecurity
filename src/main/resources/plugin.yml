@@ -1,0 +1,6 @@
+name: SigmaLoginStaff
+version: @version@
+main: com.serversigma.SigmaLoginStaff
+commands:
+  logarstaff:
+  setls:
