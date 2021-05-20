@@ -15,14 +15,18 @@ public class PlayerCommandListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onCommand(PlayerCommandPreprocessEvent event) {
+
         Player player = event.getPlayer();
 
-        if (!loginManager.isLogged(player)) {
-            if (!event.getMessage().contains("logar")) {
+        if (player.hasPermission("sigmasecurity.use")) return;
+        //if (loginManager.isAuthenticated(player)) return;
 
-                player.sendMessage("§cLogue como staff primeiro.");
-                event.setCancelled(true);
-            }
-        }
+        String command  = event.getMessage();
+
+        //for (String allowedCommand : loginManager.getAllowedCommands()) {
+        //    if (allowedCommand.startsWith(command.toLowerCase())) return;
+        //}
+        event.setCancelled(true);
     }
+
 }

@@ -2,7 +2,6 @@ package com.serversigma.listener;
 
 import com.serversigma.manager.LoginManager;
 import lombok.RequiredArgsConstructor;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -16,14 +15,16 @@ public class PlayerMoveListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onMove(PlayerMoveEvent event) {
+
         Player player = event.getPlayer();
-        if (!player.hasPermission("sigmaloginstaff.use")) return;
+
+        if (!player.hasPermission("sigmasecurity.use")) return;
+        if (loginManager.isAuthenticated(player)) return;
 
         double distance = event.getTo().distance(event.getFrom());
+        if (distance <= 0 || event.isCancelled()) return;
 
-        if (distance > 0 && !loginManager.isLogged(player) && !event.isCancelled()) {
-            player.teleport(event.getFrom());
-            player.sendMessage("§cVocê precisa logar como staff!");
-        }
+        player.teleport(event.getFrom());
     }
+
 }

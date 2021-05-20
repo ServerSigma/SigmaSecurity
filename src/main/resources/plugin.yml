@@ -1,6 +1,15 @@
-name: SigmaLoginStaff
+name: SigmaSecurity
 version: @version@
-main: com.serversigma.SigmaLoginStaff
+authors: [DevTuca, DevKeni]
+main: com.serversigma.SigmaSecurity
+
+
 commands:
-  logarstaff:
-  setls:
+  security:
+    description: "2FA for admins."
+    aliases: [sec, logarstaff, ls, loginstaff]
+
+  setsecurity:
+      description: "Defina a 2FA password"
+      aliases: [setsec, setls, setloginstaff, setlogarstaff]
+
