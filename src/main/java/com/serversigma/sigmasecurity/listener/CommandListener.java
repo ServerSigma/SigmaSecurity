@@ -48,7 +48,7 @@ public class CommandListener implements Listener {
     }
 
     private String getFirstCommand(String message) {
-        String[] splittedComamand = message.split("");
+        String[] splittedComamand = message.split(" ");
         return splittedComamand[0].toLowerCase();
     }
 
