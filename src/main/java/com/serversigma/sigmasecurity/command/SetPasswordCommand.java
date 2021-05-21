@@ -1,18 +1,16 @@
-package com.serversigma.command;
+package com.serversigma.sigmasecurity.command;
 
-import com.serversigma.manager.LoginManager;
+import com.serversigma.sigmasecurity.manager.LoginManager;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 @RequiredArgsConstructor
 public class SetPasswordCommand implements CommandExecutor {
 
-    private final Plugin plugin;
     private final LoginManager loginManager;
 
     @Override
@@ -27,7 +25,7 @@ public class SetPasswordCommand implements CommandExecutor {
             String target = args[0];
             String password = args[1];
 
-            if (!loginManager.passwordIsInsecure(password)) {
+            if (loginManager.passwordIsInsecure(password)) {
                 sender.sendMessage("");
                 sender.sendMessage("§cA senha definida é muito fraca!");
                 sender.sendMessage("§cA senha precisa conter pelo menus §7um §cnúmero.");
@@ -57,17 +55,17 @@ public class SetPasswordCommand implements CommandExecutor {
         String password = args[0];
 
         if (loginManager.passwordIsInsecure(password)) {
-            sender.sendMessage("");
-            sender.sendMessage("§cA senha definida é muito fraca!");
-            sender.sendMessage("§cA senha precisa conter pelo menus §7um §cnúmero.");
-            sender.sendMessage("§cA senha precisa conter entre §7oito §ce §7vinte §ccaracteres.");
-            sender.sendMessage("§cA senha precisa conter letras §7maiúsculas §ce §7minúsculas.");
-            sender.sendMessage("");
+            player.sendMessage("");
+            player.sendMessage("§cA senha definida é muito fraca!");
+            player.sendMessage("§cA senha precisa conter pelo menus §7um §cnúmero.");
+            player.sendMessage("§cA senha precisa conter entre §7oito §ce §7vinte §ccaracteres.");
+            player.sendMessage("§cA senha precisa conter letras §7maiúsculas §ce §7minúsculas.");
+            player.sendMessage("");
             return true;
         }
 
         loginManager.setPassword(player.getName(), password);
-        sender.sendMessage("§aSua senha foi alterada com sucesso!");
+        player.sendMessage("§aSua senha foi alterada com sucesso!");
         return true;
     }
 

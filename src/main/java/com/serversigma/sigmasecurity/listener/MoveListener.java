@@ -1,19 +1,18 @@
-package com.serversigma.listener;
+package com.serversigma.sigmasecurity.listener;
 
-import com.serversigma.manager.LoginManager;
+import com.serversigma.sigmasecurity.manager.LoginManager;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 @RequiredArgsConstructor
-public class PlayerMoveListener implements Listener {
+public class MoveListener implements Listener {
 
     private final LoginManager loginManager;
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler
     public void onMove(PlayerMoveEvent event) {
 
         Player player = event.getPlayer();

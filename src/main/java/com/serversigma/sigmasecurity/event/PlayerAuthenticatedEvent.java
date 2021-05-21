@@ -1,4 +1,4 @@
-package com.serversigma.events;
+package com.serversigma.sigmasecurity.event;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

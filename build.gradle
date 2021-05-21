@@ -25,6 +25,7 @@ dependencies {
     def lombok = 'org.projectlombok:lombok:1.18.20'
     compileOnly lombok
     annotationProcessor lombok
+    compile files ('api/nLogin.jar')
 }
 
 processResources {

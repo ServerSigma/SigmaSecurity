@@ -1,6 +1,6 @@
-package com.serversigma.manager;
+package com.serversigma.sigmasecurity.manager;
 
-import com.serversigma.events.PlayerAuthenticatedEvent;
+import com.serversigma.sigmasecurity.event.PlayerAuthenticatedEvent;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -24,6 +24,10 @@ public class LoginManager {
         plugin.getServer().getPluginManager().callEvent(new PlayerAuthenticatedEvent(player));
     }
 
+    public boolean hasAccount(Player player) {
+        return plugin.getConfig().getString("passwords." + player.getName().toLowerCase()) != null;
+    }
+
     public String getPassword(Player player) {
         return plugin.getConfig().getString("passwords." + player.getName().toLowerCase());
     }
@@ -38,7 +42,7 @@ public class LoginManager {
         return !password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$");
     }
 
-    public List<String> getAllowedCommands() {
+    public List<String> getLoginCommands() {
         return new ArrayList<String>() {{
             add("/ls");
             add("/sec");
@@ -47,6 +51,17 @@ public class LoginManager {
             add("/security");
             add("/loginstaff");
             add("/logarstaff");
+        }};
+    }
+
+    public List<String> getRegisterCommands() {
+        return new ArrayList<String>() {{
+            add("/login");
+            add("/logar");
+            add("/addls");
+            add("/addsec");
+            add("/addloginstaff");
+            add("/addlogarstaff");
         }};
     }
 

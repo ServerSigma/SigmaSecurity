@@ -1,6 +1,6 @@
-package com.serversigma.listener;
+package com.serversigma.sigmasecurity.listener;
 
-import com.serversigma.events.PlayerAuthenticatedEvent;
+import com.serversigma.sigmasecurity.event.PlayerAuthenticatedEvent;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,7 +9,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffectType;
 
 @RequiredArgsConstructor
-public class PlayerAuthenticatingListener implements Listener {
+public class AuthenticatingListener implements Listener {
 
     private final Plugin plugin;
 
@@ -18,7 +18,7 @@ public class PlayerAuthenticatingListener implements Listener {
 
         Player player  = event.getPlayer();
 
-        player.setFlySpeed(0.F);
+        player.setFlySpeed(0.2F);
         player.setWalkSpeed(0.2F);
         player.removePotionEffect(PotionEffectType.BLINDNESS);
 

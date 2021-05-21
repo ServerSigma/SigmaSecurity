@@ -1,6 +1,6 @@
-package com.serversigma.command;
+package com.serversigma.sigmasecurity.command;
 
-import com.serversigma.manager.LoginManager;
+import com.serversigma.sigmasecurity.manager.LoginManager;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
