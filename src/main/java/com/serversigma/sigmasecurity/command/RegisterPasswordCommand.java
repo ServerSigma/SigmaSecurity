@@ -29,7 +29,7 @@ public class RegisterPasswordCommand implements CommandExecutor {
         }
 
         if (args.length != 1) {
-            player.sendMessage("Uso incorreto, utilize §7/addsec <senha>");
+            player.sendMessage("§cUso incorreto, utilize §7/addsec <senha>");
             return true;
         }
 
