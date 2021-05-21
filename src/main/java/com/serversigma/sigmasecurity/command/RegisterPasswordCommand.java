@@ -52,7 +52,7 @@ public class RegisterPasswordCommand implements CommandExecutor {
         }
 
         loginManager.setPassword(player.getName(), password);
-        player.kickPlayer("§aSenha definida com sucesso. \n§aNunca compartilhe sua senha com ninguém!");
+        player.kickPlayer("§eSenha definida com sucesso. \n§eNunca compartilhe sua senha com ninguém!");
         return true;
     }
 

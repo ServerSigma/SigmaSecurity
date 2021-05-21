@@ -8,6 +8,11 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+
 @RequiredArgsConstructor
 public class CommandListener implements Listener {
 
@@ -21,18 +26,30 @@ public class CommandListener implements Listener {
         if (!player.hasPermission("sigmasecurity.use")) return;
         if (loginManager.isAuthenticated(player)) return;
 
-        String command = event.getMessage().toLowerCase();
+        String command = getFirstCommand(event.getMessage());
+        List<String> allowedCommands = new ArrayList<String>() {{
+            add("/ls");
+            add("/sec");
+            add("/login");
+            add("/logar");
+            add("/addls");
+            add("/addsec");
+            add("/security");
+            add("/logarstaff");
+            add("/loginstaff");
+            add("/addlogarstaff");
+            add("/addloginstaff");
+        }};
 
-        if (loginManager.hasAccount(player)) {
-            for (String loginCommand : loginManager.getLoginCommands()) {
-                if (command.startsWith(loginCommand)) return;
-            }
-        } else {
-            for (String registerCommand : loginManager.getRegisterCommands()) {
-                if (command.startsWith(registerCommand)) return;
-            }
+        for (String allowedCommand: allowedCommands) {
+            if (command.startsWith(allowedCommand)) return;
         }
         event.setCancelled(true);
+    }
+
+    private String getFirstCommand(String message) {
+        String[] splittedComamand = message.split("");
+        return splittedComamand[0].toLowerCase();
     }
 
 }

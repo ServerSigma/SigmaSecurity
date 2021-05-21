@@ -42,27 +42,4 @@ public class LoginManager {
         return !password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$");
     }
 
-    public List<String> getLoginCommands() {
-        return new ArrayList<String>() {{
-            add("/ls");
-            add("/sec");
-            add("/login");
-            add("/logar");
-            add("/security");
-            add("/loginstaff");
-            add("/logarstaff");
-        }};
-    }
-
-    public List<String> getRegisterCommands() {
-        return new ArrayList<String>() {{
-            add("/login");
-            add("/logar");
-            add("/addls");
-            add("/addsec");
-            add("/addloginstaff");
-            add("/addlogarstaff");
-        }};
-    }
-
 }
