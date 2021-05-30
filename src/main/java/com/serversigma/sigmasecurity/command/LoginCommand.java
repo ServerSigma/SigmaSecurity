@@ -51,7 +51,7 @@ public class LoginCommand implements CommandExecutor {
             player.sendMessage(" §eSeja bem-vindo(a) novamente, §f" + player.getName() + "§e!");
             player.sendMessage(" §eVocê já pode utilizar seus comandos e permissões.");
             player.sendMessage(" §ePara falar no canal staff, utilize §f/sc <mensagem>");
-            player.sendMessage(" §ePara alterar sua senha admnin utilize §f/setsec <senha>");
+            player.sendMessage(" §ePara alterar sua senha admin utilize §f/setsec <senha>");
             player.sendMessage("");
         }
         return true;
