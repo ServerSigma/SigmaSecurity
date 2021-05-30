@@ -15,15 +15,17 @@ public class MoveListener implements Listener {
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
 
-        Player player = event.getPlayer();
+        if (!event.getPlayer().hasPermission("sigmasecurity.use")) return;
 
-        if (!player.hasPermission("sigmasecurity.use")) return;
+        Player player = event.getPlayer();
         if (loginManager.isAuthenticated(player)) return;
 
         double distance = event.getTo().distance(event.getFrom());
         if (distance <= 0 || event.isCancelled()) return;
 
         player.teleport(event.getFrom());
+
+        loginManager.startLogin(player);
     }
 
 }

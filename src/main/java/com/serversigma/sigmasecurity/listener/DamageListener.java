@@ -16,10 +16,8 @@ public class DamageListener implements Listener {
     public void onDamage(EntityDamageEvent event) {
         if (!(event.getEntity() instanceof Player)) return;
 
-        Player player = (Player) event.getEntity();
-
-        if (!player.hasPermission("sigmasecurity.use")) return;
-        if (loginManager.isAuthenticated(player)) return;
+        if (!event.getEntity().hasPermission("sigmasecurity.use")) return;
+        if (loginManager.isAuthenticated(((Player) event.getEntity()))) return;
 
         event.setCancelled(true);
     }

@@ -18,18 +18,21 @@ repositories {
     mavenCentral()
     maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     maven { url = 'https://oss.sonatype.org/content/groups/public/' }
+    maven { url = 'https://repo.nickuc.com/maven2/' }
 }
 
 dependencies {
+    compileOnly 'com.nickuc.login:nlogin-api:9.3.0'
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+
     def lombok = 'org.projectlombok:lombok:1.18.20'
-    compileOnly lombok
     annotationProcessor lombok
-    compile files ('api/nLogin.jar')
+    compileOnly lombok
 }
 
 processResources {
     from(sourceSets.main.resources.srcDirs) {
         filter ReplaceTokens, tokens: [version: version]
     }
+
 }

@@ -22,6 +22,8 @@ public class ChatListener implements Listener {
 
         event.setMessage(null);
         event.setCancelled(true);
+
+        loginManager.startLogin(player);
     }
 
 }

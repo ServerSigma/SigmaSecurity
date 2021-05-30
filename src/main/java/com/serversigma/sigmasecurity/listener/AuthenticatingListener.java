@@ -15,14 +15,16 @@ public class AuthenticatingListener implements Listener {
 
     @EventHandler
     public void onAuthenticating(PlayerAuthenticatedEvent event) {
+        if (event.isLogged()) {
 
-        Player player  = event.getPlayer();
+            Player player = event.getPlayer();
 
-        player.setFlySpeed(0.2F);
-        player.setWalkSpeed(0.2F);
-        player.removePotionEffect(PotionEffectType.BLINDNESS);
+            player.setFlySpeed(0.2F);
+            player.setWalkSpeed(0.2F);
+            player.removePotionEffect(PotionEffectType.BLINDNESS);
 
-        plugin.getLogger().info(player.getName() + " se autênticou como administrador.");
+            plugin.getLogger().info(player.getName() + " se autênticou como administrador.");
+        }
     }
 
 }

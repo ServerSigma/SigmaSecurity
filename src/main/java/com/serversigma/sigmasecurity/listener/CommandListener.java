@@ -9,9 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 @RequiredArgsConstructor
 public class CommandListener implements Listener {
@@ -26,6 +24,10 @@ public class CommandListener implements Listener {
         if (!player.hasPermission("sigmasecurity.use")) return;
         if (loginManager.isAuthenticated(player)) return;
 
+        if (!loginManager.isAuthenticating(player)) {
+            loginManager.startLogin(player);
+        }
+
         String command = getFirstCommand(event.getMessage());
         List<String> allowedCommands = new ArrayList<String>() {{
             add("/ls");
@@ -34,14 +36,16 @@ public class CommandListener implements Listener {
             add("/logar");
             add("/addls");
             add("/addsec");
+            add("/register");
             add("/security");
+            add("/registrar");
             add("/logarstaff");
             add("/loginstaff");
             add("/addlogarstaff");
             add("/addloginstaff");
         }};
 
-        for (String allowedCommand: allowedCommands) {
+        for (String allowedCommand : allowedCommands) {
             if (command.startsWith(allowedCommand)) return;
         }
         event.setCancelled(true);

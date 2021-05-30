@@ -25,6 +25,7 @@ public class LoginRunnable extends BukkitRunnable {
             if (loginManager.isAuthenticated(player)) {
                 this.cancel();
             } else {
+
                 Location location = player.getLocation();
 
                 if (location.getYaw() != 0 || location.getPitch() != 0) {

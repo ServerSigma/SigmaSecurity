@@ -8,6 +8,7 @@ import com.serversigma.sigmasecurity.manager.LoginManager;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+@SuppressWarnings("unused")
 public final class SigmaSecurity extends JavaPlugin {
 
     @Override
@@ -18,15 +19,17 @@ public final class SigmaSecurity extends JavaPlugin {
 
         registerListener(
                 new MoveListener(loginManager),
+                new QuitListener(loginManager),
                 new DropListener(loginManager),
                 new ChatListener(loginManager),
+                new LoginListener(loginManager),
                 new AuthenticatingListener(this),
                 new DamageListener(loginManager),
                 new CommandListener(loginManager),
                 new InteractListener(loginManager),
                 new ItemHeldListener(loginManager),
                 new TabCompleteListener(loginManager),
-                new LoginListener(this, loginManager),
+                new RegisterListener(this, loginManager),
                 new InventoryClickListener(loginManager),
                 new GamemodeChangeListener(loginManager)
         );

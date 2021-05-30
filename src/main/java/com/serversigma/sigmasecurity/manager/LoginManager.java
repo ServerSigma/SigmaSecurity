@@ -1,9 +1,12 @@
 package com.serversigma.sigmasecurity.manager;
 
 import com.serversigma.sigmasecurity.event.PlayerAuthenticatedEvent;
+import com.serversigma.sigmasecurity.runnable.LoginRunnable;
+import com.serversigma.sigmasecurity.runnable.RegisterRunnable;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import com.nickuc.login.api.nLoginAPI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +16,50 @@ public class LoginManager {
 
     private final Plugin plugin;
     private final List<Player> authenticated = new ArrayList<>();
+    private final List<Player> authenticating = new ArrayList<>();
 
     public boolean isAuthenticated(Player player) {
         return authenticated.contains(player);
     }
 
     public void loginPlayer(Player player) {
-        if (authenticated.contains(player)) return;
-        authenticated.add(player);
-        plugin.getServer().getPluginManager().callEvent(new PlayerAuthenticatedEvent(player));
+        setAuthenticated(player, true);
+        setAuthenticating(player, false);
+    }
+
+    public void startLogin(Player player) {
+        if (isAuthenticated(player) || isAuthenticating(player)) return;
+
+        if (!nLoginAPI.getApi().isAuthenticated(player)
+                || !nLoginAPI.getApi().isRegistered(player)) return;
+
+        if (hasAccount(player)) {
+            new LoginRunnable(player, this).runTaskTimer(plugin, 20, 20);
+        } else {
+            new RegisterRunnable(player,this).runTaskTimer(plugin, 20, 20);
+        }
+        setAuthenticating(player, true);
+    }
+
+    public void setAuthenticated(Player player, boolean logged) {
+        if (logged && !isAuthenticated(player)) {
+            authenticated.add(player);
+        } else {
+            authenticated.remove(player);
+        }
+        plugin.getServer().getPluginManager().callEvent(new PlayerAuthenticatedEvent(player, logged));
+    }
+
+    public void setAuthenticating(Player player, boolean mode) {
+        if (mode && !isAuthenticating(player)) {
+            authenticating.add(player);
+        } else {
+            authenticating.remove(player);
+        }
+    }
+
+    public boolean isAuthenticating(Player player) {
+        return authenticating.contains(player);
     }
 
     public boolean hasAccount(Player player) {
@@ -42,4 +80,8 @@ public class LoginManager {
         return !password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$");
     }
 
+    public void logoutPlayer(Player player) {
+        setAuthenticating(player, false);
+        setAuthenticated(player, false);
+    }
 }

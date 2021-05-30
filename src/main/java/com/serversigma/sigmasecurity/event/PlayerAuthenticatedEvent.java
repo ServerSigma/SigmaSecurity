@@ -8,9 +8,12 @@ import org.bukkit.event.HandlerList;
 
 @Getter
 @RequiredArgsConstructor
+@SuppressWarnings("unused")
 public class PlayerAuthenticatedEvent extends Event {
 
     private final Player player;
+    private final boolean logged;
+
     private static final HandlerList HANDLERS = new HandlerList();
 
     @Override

@@ -25,6 +25,7 @@ public class RegisterRunnable extends BukkitRunnable {
             if (loginManager.hasAccount(player)) {
                 this.cancel();
             } else {
+
                 Location location = player.getLocation();
 
                 if (location.getYaw() != 0 || location.getPitch() != 0) {
