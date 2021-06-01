@@ -24,10 +24,6 @@ public class CommandListener implements Listener {
         if (!player.hasPermission("sigmasecurity.use")) return;
         if (loginManager.isAuthenticated(player)) return;
 
-        if (!loginManager.isAuthenticating(player)) {
-            loginManager.startLogin(player);
-        }
-
         String command = getFirstCommand(event.getMessage());
         List<String> allowedCommands = new ArrayList<String>() {{
             add("/ls");
@@ -44,6 +40,10 @@ public class CommandListener implements Listener {
             add("/addlogarstaff");
             add("/addloginstaff");
         }};
+
+        if (!loginManager.isAuthenticating(player)) {
+            loginManager.startLogin(player);
+        }
 
         for (String allowedCommand : allowedCommands) {
             if (command.startsWith(allowedCommand)) return;
