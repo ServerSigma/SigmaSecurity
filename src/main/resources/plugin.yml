@@ -1,19 +1,19 @@
 name: SigmaSecurity
 version: @version@
-authors: [DevTuca, DevKeni]
+authors: [ DevTuca, DevKeni ]
 main: com.serversigma.sigmasecurity.SigmaSecurity
-depend: [nLogin]
+depend: [ nLogin ]
 
 commands:
   security:
     description: "2FA for admins."
-    aliases: [sec, logarstaff, ls, loginstaff]
+    aliases: [ sec, logarstaff, ls, loginstaff ]
 
   setsecurity:
     description: "Defina a 2FA password"
-    aliases: [setsec, setls, setloginstaff, setlogarstaff]
+    aliases: [ setsec, setls, setloginstaff, setlogarstaff ]
 
   addsecurity:
     description: "Defina a 2FA password"
-    aliases: [addsec, addls, addloginstaff, addlogarstaff]
+    aliases: [ addsec, addls, addloginstaff, addlogarstaff ]
 

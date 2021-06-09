@@ -40,7 +40,7 @@ public class LoginCommand implements CommandExecutor {
 
         String password = args[0];
 
-        if  (!loginManager.getPassword(player).equals(password)) {
+        if (!loginManager.getPassword(player).equals(password)) {
             player.kickPlayer("§cSenha de autênticação incorreta.");
             return true;
         } else {

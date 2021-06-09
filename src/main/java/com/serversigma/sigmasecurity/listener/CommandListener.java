@@ -22,7 +22,7 @@ public class CommandListener implements Listener {
         Player player = event.getPlayer();
 
         if (!player.hasPermission("sigmasecurity.use")) return;
-        if (loginManager.isAuthenticated(player)) return;
+        if (!loginManager.isAuthenticating(player)) return;
 
         String command = getFirstCommand(event.getMessage());
         List<String> allowedCommands = new ArrayList<String>() {{
@@ -42,7 +42,7 @@ public class CommandListener implements Listener {
         }};
 
         if (!loginManager.isAuthenticating(player)) {
-            loginManager.startLogin(player);
+            loginManager.startLogin(player, true);
         }
 
         for (String allowedCommand : allowedCommands) {

@@ -25,7 +25,8 @@ public class MoveListener implements Listener {
 
         player.teleport(event.getFrom());
 
-        loginManager.startLogin(player);
+
+        loginManager.startLogin(player, true);
     }
 
 }

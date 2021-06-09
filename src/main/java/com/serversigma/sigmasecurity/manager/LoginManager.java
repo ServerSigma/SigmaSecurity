@@ -1,12 +1,12 @@
 package com.serversigma.sigmasecurity.manager;
 
+import com.nickuc.login.api.nLoginAPI;
 import com.serversigma.sigmasecurity.event.PlayerAuthenticatedEvent;
 import com.serversigma.sigmasecurity.runnable.LoginRunnable;
 import com.serversigma.sigmasecurity.runnable.RegisterRunnable;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import com.nickuc.login.api.nLoginAPI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,16 +27,19 @@ public class LoginManager {
         setAuthenticating(player, false);
     }
 
-    public void startLogin(Player player) {
+    public void startLogin(Player player, boolean verifyLogin) {
         if (isAuthenticated(player) || isAuthenticating(player)) return;
 
-        if (!nLoginAPI.getApi().isAuthenticated(player)
-                || !nLoginAPI.getApi().isRegistered(player)) return;
+        // Recommended turn false if event is handled from LoginEvent|RegisterEvent
+        if (verifyLogin) {
+            if (!nLoginAPI.getApi().isAuthenticated(player.getName())
+                    || !nLoginAPI.getApi().isRegistered(player)) return;
+        }
 
         if (hasAccount(player)) {
             new LoginRunnable(player, this).runTaskTimer(plugin, 20, 20);
         } else {
-            new RegisterRunnable(player,this).runTaskTimer(plugin, 20, 20);
+            new RegisterRunnable(player, this).runTaskTimer(plugin, 20, 20);
         }
         setAuthenticating(player, true);
     }
@@ -84,4 +87,5 @@ public class LoginManager {
         setAuthenticating(player, false);
         setAuthenticated(player, false);
     }
+
 }

@@ -27,9 +27,9 @@ public final class SigmaSecurity extends JavaPlugin {
                 new DamageListener(loginManager),
                 new CommandListener(loginManager),
                 new InteractListener(loginManager),
+                new RegisterListener(loginManager),
                 new ItemHeldListener(loginManager),
                 new TabCompleteListener(loginManager),
-                new RegisterListener(this, loginManager),
                 new InventoryClickListener(loginManager),
                 new GamemodeChangeListener(loginManager)
         );
