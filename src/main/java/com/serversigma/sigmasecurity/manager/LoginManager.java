@@ -66,7 +66,13 @@ public class LoginManager {
     }
 
     public boolean hasAccount(Player player) {
-        return plugin.getConfig().getString("passwords." + player.getName().toLowerCase()) != null;
+        try {
+            String playerName = player.getName().toLowerCase();
+            return !plugin.getConfig().getString("passwords." + playerName).isEmpty()
+                    && plugin.getConfig().getString("passwords." + playerName) != null;
+        } catch (NullPointerException exception) {
+            return false;
+        }
     }
 
     public String getPassword(Player player) {
