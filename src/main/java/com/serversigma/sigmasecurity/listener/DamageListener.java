@@ -20,6 +20,7 @@ public class DamageListener implements Listener {
         if (loginManager.isAuthenticated(((Player) event.getEntity()))) return;
 
         event.setCancelled(true);
+
     }
 
 }

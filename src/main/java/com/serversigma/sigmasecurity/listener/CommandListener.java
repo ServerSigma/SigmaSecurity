@@ -48,7 +48,9 @@ public class CommandListener implements Listener {
         for (String allowedCommand : allowedCommands) {
             if (command.startsWith(allowedCommand)) return;
         }
+
         event.setCancelled(true);
+
     }
 
     private String getFirstCommand(String message) {

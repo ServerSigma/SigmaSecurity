@@ -21,6 +21,7 @@ public class GamemodeChangeListener implements Listener {
         if (loginManager.isAuthenticated(player)) return;
 
         event.setCancelled(true);
+
     }
 
 }

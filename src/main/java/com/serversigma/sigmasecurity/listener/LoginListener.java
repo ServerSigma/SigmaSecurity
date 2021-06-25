@@ -26,6 +26,7 @@ public class LoginListener implements Listener {
         player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 6000, 100));
 
         loginManager.startLogin(player, false);
+
     }
 
 }

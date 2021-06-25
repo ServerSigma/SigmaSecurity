@@ -21,6 +21,7 @@ public class InventoryClickListener implements Listener {
         if (loginManager.isAuthenticated(player)) return;
 
         event.setCancelled(true);
+
     }
 
 }

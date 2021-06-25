@@ -67,6 +67,7 @@ public class SetPasswordCommand implements CommandExecutor {
         loginManager.setPassword(player.getName(), password);
         player.sendMessage("§aSua senha foi alterada com sucesso!");
         return true;
+
     }
 
 }

@@ -19,6 +19,7 @@ public class InteractListener implements Listener {
         if (loginManager.isAuthenticated(event.getPlayer())) return;
 
         event.setCancelled(true);
+
     }
 
 }

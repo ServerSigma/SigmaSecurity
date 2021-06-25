@@ -21,6 +21,7 @@ public class TabCompleteListener implements Listener {
         if (loginManager.isAuthenticated(player)) return;
 
         event.getTabCompletions().clear();
+
     }
 
 }

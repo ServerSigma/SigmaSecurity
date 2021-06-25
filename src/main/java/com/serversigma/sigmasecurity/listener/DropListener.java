@@ -22,6 +22,7 @@ public class DropListener implements Listener {
         if (loginManager.isAuthenticated(player)) return;
 
         event.setCancelled(true);
+
     }
 
 }
